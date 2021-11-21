@@ -36,6 +36,22 @@ class CabeceraViewSet(
     serializer_class = CabeceraReadSerializer   
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
     filterset_fields = fields = ['id','nro_factura','fecha','cliente','total']
+    
+    def get_queryset(self):
+        """
+        Optionally restricts the returned purchases to a given user,
+        by filtering against a `username` query parameter in the URL.
+        """
+        queryset = Cabecera.objects.all()
+        startDate = self.request.query_params.get('startdate')
+        endDate = self.request.query_params.get('enddate')
+        print(startDate,endDate)
+        if startDate is not None and endDate is not None:
+            #queryset = queryset.filter(fecha__range=["startDate", "endDate"])
+            #queryset = queryset.objects.filter(fecha__date__gte=startDate, fecha__date__lte=endDate)
+            queryset = Cabecera.objects.all().filter(fecha__range=(startDate, endDate))
+            print(queryset)
+        return queryset
 
     def update(self, request, *args, **kwargs ):
         """**Metodo Update**"""
