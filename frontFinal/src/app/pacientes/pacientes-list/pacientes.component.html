@@ -1,0 +1,81 @@
+<app-home></app-home>
+
+<div class="wrapper">
+    <div class="row">
+        <div class="col s12">
+            <h4 class="center-align">Reportes de Ventas</h4></div>
+        <div class="container">
+        <div class="row">
+            <div class="input-field col s12 m8 offset-m2">
+                <p class="subituloFilter">Cliente:</p>
+            <select class="browser-default">
+                <option  *ngFor="let cliente of clientes" (click)="setCliente(cliente)">{{cliente.nombre}}</option>
+            </select>
+                <p class="subituloFilter">Fecha Desde:</p>
+                <input  name='startDate' id='startDate' type="text" class="datepicker" >
+                <p class="subituloFilter">Fecha Hasta:</p>
+                <input  name='endDate' id='endDate' type="text" class="datepicker" >
+            </div>
+            <div class="col s12 m6 offset-m2">
+            </div>
+        
+        <div class="col s12 m3 l3">
+                                                                                                              
+            <a (click)='filter()' class="waves-effect waves-light btn agregar right disagree" style="margin:10px"><i class="material-icons right">filter_list</i>Filtrar</a>
+            <a (click)='clear()' class="waves-effect waves-light btn agregar right limpiar" style="margin:10px">limpiar</a>
+        </div>
+        </div>
+        </div>
+        <div class="col s12 m9 offset-m2">
+            <a [routerLink]="['/cabeceras/add']" class="btn-floating btn-large agregar agree">
+                    <i id="iconAdd" class="material-icons">note_add</i>
+            </a>
+            <table class="responsive-table borderer centered">
+                <colgroup>
+                    <col span="1" style="width: 10%;">
+                    <col span="1" style="width: 30%;">
+                    <col span="1" style="width: 25%;">
+                    <col span="1" style="width: 35%;">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th *ngFor="let header of tableHeaders">{{ header }}</th>
+                    </tr>                                                                      
+                </thead>
+
+                <tbody>
+
+
+                    <tr *ngFor="let cabecera of data; index as j">
+                        <td>{{ cabecera.id }}</td>
+                        <td>{{ cabecera.nro_factura }}</td>
+                        <td>{{ cabecera.fecha }}</td>
+                        <td>{{ cabecera.cliente.nombre }}</td>
+                        <td>{{ cabecera.total }}</td>
+                        <td>
+                            <a [routerLink]="['/cabeceras/detail', cabecera.id]" title="Editar">
+                                <i id="iconEdit" class="material-icons">info</i>
+                            </a>
+                            
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+    
+
+        </div>
+    </div>
+</div>
+
+<div id="modal_delete" class="modal">
+    <div class="modal-content">
+        <h4>¿Eliminar Cliente?</h4>
+        <p class="red-text">Esta acción no puede deshacerse</p>
+    </div>
+    <div class="modal-footer">
+        <a class="modal-close waves-effect waves-green btn disagree" style="margin:4px;">Cancelar</a>
+        <a (click)='deleteRecord()' class="modal-close waves-effect waves-green btn agree" style="margin:4px;">Eliminar</a>
+    </div>
+</div>
+

@@ -1,0 +1,38 @@
+.agree {
+    background: #00adaa !important;
+}
+.subituloFilter{
+    color: #00adaa;
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-size: 16px;
+
+}
+
+.limpiar {
+    background: red !important;
+}
+
+.wrapper {
+    background-color: honeydew;
+}
+
+.center-align{
+    color:#00adaa;
+    font-weight:800;
+    font-family: 'Montserrat Alternates', sans-serif;
+}
+
+#iconDelete{
+    color:red;
+    font-size: 30px;
+}
+
+#iconEdit{
+    color:blue;
+    font-size: 30px;
+}
+
+
+#iconAdd{
+    font-size: 30px;
+}

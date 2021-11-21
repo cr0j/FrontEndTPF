@@ -1,0 +1,14 @@
+.agree {
+    background: red !important;
+}
+
+.wrapper {
+    background-color: honeydew;
+    margin: 32px;
+}
+
+.center-align{
+    color:#00adaa;
+    font-weight:800;
+    font-family: 'Montserrat Alternates', sans-serif;
+}

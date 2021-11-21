@@ -1,0 +1,53 @@
+.total{
+    color:#00adaa;
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-size: 28px;
+    text-align:center;
+}
+
+.subituloFilter{
+    color: #00adaa;
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-size: 16px;
+
+}
+
+.agree {
+    background: #00adaa !important;
+}
+.borrarFondo{
+    background: honeydew !important;
+}
+
+.limpiar {
+    background: red !important;
+}
+
+.atras {
+    background: red !important;
+}
+
+.wrapper {
+    background-color: ;
+}
+
+.center-align{
+    color:#00adaa;
+    font-weight:800;
+    font-family: 'Montserrat Alternates', sans-serif;
+}
+
+#iconDelete{
+    color:red;
+    font-size: 30px;
+}
+
+#iconEdit{
+    color:gold;
+    font-size: 30px;
+}
+
+
+#iconAdd{
+    font-size: 30px;
+}
