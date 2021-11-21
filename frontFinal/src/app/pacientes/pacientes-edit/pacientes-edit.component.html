@@ -1,0 +1,65 @@
+<app-home></app-home>
+
+<div class="wrapper">
+    <div class="row">
+
+        <div class="col s12">
+            <h4 class="center-align">Reportes de Ventas Detallado</h4>
+        </div>
+
+        <div class="container">
+            <div class="row">
+
+                <div class="input-field col s12 m8 offset-m2">
+                    <p class="subituloFilter">Producto:</p>
+                <select class="browser-default">
+                    <option  *ngFor="let producto of productos" (click)="setProducto(producto)">{{producto.nombre}}</option>
+                </select>
+                    
+                </div>
+                <div class="col s12 m6 offset-m2">
+                </div>
+
+                <div class="col s12 m3 l3">
+                                                                                                                    
+                    <a (click)='filter()' class="waves-effect waves-light btn agregar right disagree" style="margin:10px"><i class="material-icons right">filter_list</i>Filtrar</a>
+                    <a (click)='clear()' class="waves-effect waves-light btn agregar right limpiar" style="margin:10px">limpiar</a>
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="col s12 m9 offset-m2">
+            <a [routerLink]="['/cabeceras/']" class="btn-floating btn-large agregar agree">
+                    <i id="iconAdd" class="material-icons">arrow_back</i>
+            </a>
+            <table class="responsive-table borderer centered">
+                <colgroup>
+                    <col span="1" style="width: 10%;">
+                    <col span="1" style="width: 30%;">
+                    <col span="1" style="width: 25%;">
+                    <col span="1" style="width: 35%;">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th *ngFor="let header of tableHeaders">{{ header }}</th>
+                    </tr>                                                                      
+                </thead>
+
+                <tbody>
+
+
+                    <tr *ngFor="let detalle of data; index as j">
+                        <td>{{ detalle.id }}</td>
+                        <td>{{ detalle.producto.nombre }}</td>
+                        <td>{{ detalle.producto.precio }}</td>
+                        <td>{{ detalle.cantidad }}</td>
+                        <td>{{ detalle.subtotal }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        
+    </div>
+</div>

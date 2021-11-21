@@ -1,0 +1,134 @@
+<app-home></app-home>
+<div class="wrapper">
+  
+  <div class="col s12" style="margin-top: 16px;">
+      <h4 class="center-align"><i id="iconAdd" class="material-icons">assignment</i> Registro de Ventas</h4>
+  </div>
+  <div class="row">
+  
+    
+    <div class="input-field col s12 m8 offset-m2">
+      <p class="subituloFilter"><i class="material-icons">payment</i>Numero de Factura:</p>
+      <input [(ngModel)]="cabecera.nro_factura" name='nro_factura' id="nro_factura" type="text" class="">
+        
+      <p class="subituloFilter"><i class="material-icons">date_range</i>Fecha:</p>
+      
+      <input  name='fecha' id='fecha' type="text" class="datepicker" >
+      
+
+      <p class="subituloFilter"><i class="material-icons">person</i>Cliente:</p>
+       <select class="browser-default">
+         <option  name="cliente" *ngFor="let cliente of clientes" (click)="setCliente(cliente.id)">{{cliente.nombre}}</option>
+      </select>
+
+    </div>
+            
+  </div>
+        
+
+  
+
+
+  <div  class="col s12 m9 offset-m2">
+
+  
+      <h4 class="center-align"><i id="iconAdd" class="material-icons">playlist_add</i> Agregar Detalles</h4>
+
+      
+            <a (click)="agregarDetalle()" class="btn-floating btn-large agregar agree">
+                    <i id="iconAdd" class="material-icons">add_shopping_cart</i>
+            </a>
+            <table *ngIf="show" class="responsive-table borderer centered">
+              
+                <colgroup>
+                    <col span="1" style="width: 35%;">
+                    <col span="1" style="width: 15%;">
+                    <col span="1" style="width: 15%;">
+                    <col span="1" style="width: 35%;">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th *ngFor="let header of tableHeaders">{{ header }}</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+
+                    <tr *ngFor="let detalle of arrayDetalles; index as j">
+                        <td>
+                          <select class="browser-default">
+                            <option  *ngFor="let producto of productos" (click)="setProducto(producto,j)">{{producto.nombre}}</option>
+                          </select>
+                        </td>
+
+                        <td>
+                          <p>{{precioProductos[j]}}</p>
+                        </td>
+                        
+                        <td>
+                          <div class="input-field col s12 m8 offset-m2">
+                            <i class="material-icons prefix">storage</i>
+                            <input (change)="setSubotalDetalle(j)" [(ngModel)]="arrayDetalles[j].cantidad" name='cantidad' id="cantidad" type="text" class="">
+                            <label for="cantidad" class="active">Cantidad</label>
+                          </div>
+                        </td>
+
+                        <td>
+                          <p>{{subtotalProductos[j]}}</p>
+                        </td>
+                        <!-- <td>{{ detalle.producto }}</td> -->
+                        
+                        
+                        <td>
+                            <a (click)="borrarDetalle(j)" title="Borrar Detalle" class="btn-floating btn-large agregar borrarFondo">
+                                <i id="iconDelete" class="material-icons">remove_shopping_cart</i>
+                            </a>
+                            
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+    
+
+    </div>
+  
+
+
+  <!-- <li *ngFor="let user of users; index as i; first as isFirst">
+    {{i}}/{{users.length}}. {{user}} <span *ngIf="isFirst">default</span>
+  </li> -->
+
+  <!-- <div class="input-field col s12">
+    <select [(ngModel)]="clientes">
+      <option value="" disabled selected>Seleccione un Cliente</option>
+      <option value="1">a</option>
+      <option value="2">b</option>
+      <option value="3">c</option>
+    </select>
+    <label>Cliente</label>
+  </div> -->
+
+
+
+  <!-- <div class="input-field col s12 m8 offset-m2">
+    <i class="material-icons prefix">email</i>
+    <input [(ngModel)]="cabecera.email" name='email' id="email" type="email" class="">
+    <label for="email" class="active">Email</label>
+  </div> -->
+       
+  
+  <div class="col s12 m2 offset-m8">
+    <h4 class="total"><i id="iconAdd" class="material-icons">attach_money</i> Total: {{cabecera.total}}</h4>
+      <a (click)='post()' class="waves-effect waves-light btn right">Guardar</a>
+
+      <a [routerLink]="['/cabeceras/']" class="waves-effect waves-light btn left-align atras">Atras</a>
+  </div>
+
+</div>
+
+
+
+
+    
