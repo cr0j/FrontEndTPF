@@ -1,0 +1,28 @@
+<app-home></app-home>
+<div class="wrapper">
+  <div class="col s12" style="margin-top: 16px;">
+      <h4 class="center-align"><i id="iconAdd" class="material-icons">edit</i> Editar Producto</h4>
+  </div>
+  <div class="input-field col s12 m8 offset-m2">
+    <i class="material-icons prefix">store</i>
+    <input [(ngModel)]="producto.nombre" name='nombre' id="nombre" type="text" class="">
+    <label for="nombre" class="active">Nombre del Producto</label>
+  </div>
+  <div class="input-field col s12 m8 offset-m2">
+    <i class="material-icons prefix">monetization_on</i>
+    <input [(ngModel)]="producto.precio" name='precio' id="precio" type="text" class="">
+    <label for="precio" class="active">Precio</label>
+  </div>
+
+  <div class="input-field col s12 m8 offset-m2">
+    <i class="material-icons prefix">insert_chart</i>
+    <input [(ngModel)]="producto.existencia" name='existencia' id="existencia" type="text" class="">
+    <label for="existencia" class="active">Existencia</label>
+  </div>
+  <div class="col s12 m2 offset-m8">
+      <a (click)='put()' class="waves-effect waves-light btn right">Actualizar</a>
+
+      <a [routerLink]="['/clientes/']" class="waves-effect waves-light btn left-align agree">Atras</a>
+  </div>
+
+</div>
