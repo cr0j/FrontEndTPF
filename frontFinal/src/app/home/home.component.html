@@ -1,0 +1,109 @@
+<!--The content below is only a placeholder and can be replaced.-->
+
+<!-- Dropdown Structure -->
+<ul id="dropdown1" class="dropdown-content">
+    <li><a href="#!">one</a></li>
+    <li><a href="#!">two</a></li>
+    <li class="divider"></li>
+    <li><a href="#!">three</a></li>
+</ul>
+<nav>
+    <div class="nav-wrapper">
+        <a routerLink="" class="brand-logo center">Sistema de Facturación<i class="material-icons right">shopping_cart</i><i class="material-icons left">shopping_cart</i></a>
+        <!--
+            <ul class="right">
+                <li><a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a></li>
+            </ul>
+        -->
+        
+        <ul class="left">
+                <li>
+                    <a id="menu" title="Menú"><i class="material-icons">menu</i></a>
+                </li>
+                
+        </ul>
+
+        <ul class="right">
+            
+            <!-- <li>
+              <img src="https://cdn-icons-png.flaticon.com/512/1052/1052784.png" alt="" width="60" height="60" style="margin-left: auto; margin-right: auto; display: block;">
+            </li> -->
+              <!-- <li>
+                <a title="Cerrar Sesion" [routerLink]="['/login/']" (click)="logout()"><i class="material-icons">exit_to_app</i></a>
+            </li> -->
+          
+            
+        </ul>
+        
+
+    </div>
+</nav>
+
+<ul id="sidenav-left" class="sidenav">
+    <li><a  class="logo-container">Administración<i class="material-icons left">shopping_cart</i></a></li>
+    <li class="no-padding">
+      <ul  class="collapsible collapsible-accordion">
+
+        <li class="bold waves-effect active "><a class="collapsible-header" tabindex="0">Clientes<i class="material-icons">arrow_drop_down_circle</i></a>
+          <div class="collapsible-body" style="display: block;">
+            <ul class="desplegable">
+              <li><a routerLink="/clientes" class="waves-effect active sidenav-close">Listar<i class="material-icons" style="color: blue;">list</i></a></li>
+              <li><a routerLink="/clientes/add" class="waves-effect sidenav-close">Agregar<i class="material-icons" style="color:red;">person_add</i></a></li>
+            </ul>
+          </div>
+        </li>
+        
+        <li class="bold waves-effect"><a class="collapsible-header" tabindex="0">Productos<i class="material-icons chevron">arrow_drop_down_circle</i></a>
+          <div class="collapsible-body">
+            <ul class="desplegable">
+              <li><a routerLink="/productos" class="waves-effect active sidenav-close">Listar<i class="material-icons" style="color: blue;">list</i></a></li>
+              <li><a routerLink="/productos/add" class="waves-effect sidenav-close">Agregar<i class="material-icons" style="color:red;">add_shopping_cart</i></a></li>
+            </ul>
+          </div>
+        </li>
+
+    
+
+        <li class="bold waves-effect"><a class="collapsible-header" tabindex="0">Ventas<i class="material-icons chevron">arrow_drop_down_circle</i></a>
+          <div class="collapsible-body">
+            <ul class="desplegable">
+              <li><a routerLink="/cabeceras" class="waves-effect active sidenav-close">Reporte<i class="material-icons" style="color: blue;">list</i></a></li>
+              <li><a routerLink="/detalles" class="waves-effect active sidenav-close">Reporte Detalle <i class="material-icons" style="color: blue;">list</i></a></li>
+              <li><a routerLink="/cabeceras/add" class="waves-effect sidenav-close">Registro<i class="material-icons" style="color:red;">note_add</i></a></li>
+            </ul>
+          </div>
+        </li>
+
+
+        <!-- <li class="bold waves-effect"><a class="collapsible-header" tabindex="0">Reservas<i class="material-icons chevron">arrow_drop_down_circle</i></a>
+          <div class="collapsible-body">
+            <ul class="desplegable">
+              <li><a routerLink="/reservas" class="waves-effect active sidenav-close">Listar<i class="material-icons" style="color: blue;">list</i></a></li>
+              <li><a routerLink="/reserva/add" class="waves-effect sidenav-close">Agregar<i class="material-icons" style="color:red;">add</i></a></li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="bold waves-effect"><a class="collapsible-header" tabindex="0">Fichas<i class="material-icons chevron">arrow_drop_down_circle</i></a>
+          <div class="collapsible-body">
+            <ul class="desplegable">
+              <li><a routerLink="/fichas" class="waves-effect active sidenav-close">Listar<i class="material-icons" style="color: blue;">list</i></a></li>
+              <li><a routerLink="/ficha/add" class="waves-effect sidenav-close">Agregar<i class="material-icons" style="color:red;">add</i></a></li>
+            </ul>
+          </div>
+        </li>
+
+
+        <li class="bold waves-effect"><a class="collapsible-header" tabindex="0">Horarios<i class="material-icons chevron">arrow_drop_down_circle</i></a>
+          <div class="collapsible-body">
+            <ul class="desplegable">
+              <li><a routerLink="/horario-atencion-conf" class="waves-effect active sidenav-close">Configuracion<i class="material-icons" style="color: black;">schedule</i></a></li>
+              <li><a routerLink="/horario-atencion-excep-conf" class="waves-effect active sidenav-close">Excepciones<i class="material-icons" style="color: red;">close</i></a></li>
+            </ul>
+          </div>
+        </li> -->
+
+      
+      </ul>
+    </li>
+  </ul>
