@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% load socialaccount %}
+
+{% block titulo %}
+    {{ block.super }}
+    Inicio
+{% endblock %}
+
+{% block contenido %}
+
+  {{ block.super }}
+
+  {% if user.is_authenticated %}
+    <p>Welcome, {{ user.username }} !</p> 
+  {% else %}
+
+    <div style="padding:20px 30px 40px; border:1px solid lightgray; border-radius: 5px; width:300px; margin: 0 auto;">
+      <h2> Inicio de sesión </h2><br>
+      <a href="{% provider_login_url 'google' %}">
+        <button type="button" class="login-with-google-btn" >
+          Ingresar con Google
+        </button>
+      </a>
+    </div>
+    
+  {% endif %}
+
+{% endblock %}

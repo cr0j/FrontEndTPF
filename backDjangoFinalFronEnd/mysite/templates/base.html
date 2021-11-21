@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        
+        <!--Introduce Moment.js-->
+        <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
+        
+
+        
+        <!-- Introduce style -->
+        {% comment %} <link
+          rel="stylesheet"
+          href="//cdn.jsdelivr.net/npm/element-plus/dist/index.css"
+        /> {% endcomment %}
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma-rtl.min.css">
+        <!-- Introduce Vue -->
+        <script src="//cdn.jsdelivr.net/npm/vue@next"></script>
+        <!-- Introduce component library -->
+        <script src="https://cdn.jsdelivr.net/npm/element-plus@1.1.0-beta.20"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-plus@1.1.0-beta.20/dist/index.css">
+        <!-- Introduce axios -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <!-- Introduce jQuery-->
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+        <!-- Introduce d3 libary (BURNDOWNCHART)-->
+        <script src="http://d3js.org/d3.v3.min.js"></script>
+
+        {% comment %} <script  src="https://unpkg.com/browse/element-plus@1.1.0-beta.20/packages/locale/lang/es.ts"></script> {% endcomment %}
+        
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+        <script src="http://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        
+
+        
+
+        <script>
+          function getCookie(cname) {
+              let name = cname + "=";
+              let decodedCookie = decodeURIComponent(document.cookie);
+              let ca = decodedCookie.split(';');
+              for(let i = 0; i <ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                  c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                  return c.substring(name.length, c.length);
+                }
+              }
+              return "";
+          }
+          //console.log(getCookie("csrftoken"));
+          axios.defaults.headers.common['X-CSRFToken'] = getCookie("csrftoken");
+        </script>
+
+        
+
+        {% load static %}
+        <script src="{% static 'js/PermisosServicio.js' %}"></script>
+        <script src="{% static 'js/ProyectoServicio.js' %}"></script>
+        <script src="{% static 'js/SprintServicio.js' %}"></script>
+        
+        
+        
+        </script>
+        
+        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+        
+        <style>
+            body {
+                font-family: 'Roboto', sans-serif;
+            }
+
+
+        </style>
+
+        <title> {% block titulo %} {% endblock %} </title>
+        
+        {% block estilos %} {% endblock %}
+        {% block scripts %} {% endblock %}
+
+        <style>
+          h1.title {
+              color:#778899;
+              text-shadow: none;
+              font-size:2.5rem !important;
+          }          
+        </style>
+    </head>
+
+    <body>
+        <style type="text/css">
+            .login-with-google-btn {
+              transition: background-color .3s, box-shadow .3s;
+                
+              padding: 12px 16px 12px 42px;
+              border: none;
+              border-radius: 3px;
+              box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25);
+              
+              color: #757575;
+              font-size: 14px;
+              font-weight: 500;
+              font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
+              
+              background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMTcuNiA5LjJsLS4xLTEuOEg5djMuNGg0LjhDMTMuNiAxMiAxMyAxMyAxMiAxMy42djIuMmgzYTguOCA4LjggMCAwIDAgMi42LTYuNnoiIGZpbGw9IiM0Mjg1RjQiIGZpbGwtcnVsZT0ibm9uemVybyIvPjxwYXRoIGQ9Ik05IDE4YzIuNCAwIDQuNS0uOCA2LTIuMmwtMy0yLjJhNS40IDUuNCAwIDAgMS04LTIuOUgxVjEzYTkgOSAwIDAgMCA4IDV6IiBmaWxsPSIjMzRBODUzIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNNCAxMC43YTUuNCA1LjQgMCAwIDEgMC0zLjRWNUgxYTkgOSAwIDAgMCAwIDhsMy0yLjN6IiBmaWxsPSIjRkJCQzA1IiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNOSAzLjZjMS4zIDAgMi41LjQgMy40IDEuM0wxNSAyLjNBOSA5IDAgMCAwIDEgNWwzIDIuNGE1LjQgNS40IDAgMCAxIDUtMy43eiIgZmlsbD0iI0VBNDMzNSIgZmlsbC1ydWxlPSJub256ZXJvIi8+PHBhdGggZD0iTTAgMGgxOHYxOEgweiIvPjwvZz48L3N2Zz4=);
+              background-color: white;
+              background-repeat: no-repeat;
+              background-position: 11px 13px;
+              
+            }
+            .login-with-google-btn:hover {
+                box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 2px 4px rgba(0, 0, 0, .25);
+                
+              }
+              
+              .login-with-google-btn:active {
+                background-color: #eeeeee;
+              }
+              
+              .login-with-google-btn:focus {
+                outline: none;
+                box-shadow: 
+                  0 -1px 0 rgba(0, 0, 0, .04),
+                  0 2px 4px rgba(0, 0, 0, .25),
+                  0 0 0 3px #c8dafc;
+              }
+              
+              .login-with-google-btn:disabled {
+                filter: grayscale(100%);
+                background-color: #ebebeb;
+                box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25);
+                cursor: not-allowed;
+                
+              }
+              .tag_proyecto {
+                color: #8d8c8c;
+                font-weight: 500;
+                background: #efefef;
+                border: 1px solid #d6d6d6;
+                padding: 5px 15px;
+                margin: 10px;
+                overflow:hidden;
+              }
+                    
+            body {
+                text-align: center;
+            }
+        </style>
+
+        <div id="app">
+            <el-row>
+                <el-col :span="4" style="justify-content: center;
+                vertical-align: middle;
+                align-items: center;
+                box-sizing: border-box;
+                border-bottom: 1px solid #e6e6e6;
+                display: flex;
+                margin-top: -1px;
+                ">
+                    <h4 style="color:#409EFF; font-weight: 500;"> <i class="el-icon-monitor" style="color:black;font-size:30px;"></i>Gestor de Proyectos - IS2</h4>
+                </el-col>
+                <el-col :span="8">
+                    <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">              
+                        {% if user.is_authenticated %}
+                          {% comment %} <el-menu-item index="1"> Administrar </el-menu-item> {% endcomment %}
+                          <el-menu-item index="Menu del Proyecto" style="font-weight: 500;"> Menu del Proyecto </el-menu-item>
+                          <el-menu-item index="Definicion del Proyecto" style="font-weight: 500;"> Definicion del Proyecto </el-menu-item>
+                          <el-menu-item index="5" style="font-weight: 500;"> Logout </el-menu-item>
+                        {% else %}
+                          <el-menu-item index="6" style="font-weight: 500;"> Login </el-menu-item>
+                        {% endif %}
+                      </el-menu>
+                </el-col>
+
+                <el-col :span="10" style="justify-content: center;
+                vertical-align: middle;
+                align-items: center;
+                box-sizing: border-box;
+                border-bottom: 1px solid #e6e6e6;
+                display: flex;
+                margin-top: -1px;
+                ">  
+
+                    {% if user.is_authenticated %}
+                      <h4 style="color:#409EFF;font-weight: 700;"> <i class="el-icon-user" style="color:black;font-size:35px;"></i>Usuario: {{user.username}}</h4>
+                    {% endif %}
+
+                </el-col>
+
+            </el-row>
+
+            
+
+
+            <br>
+            <el-container>
+            
+            {% if user.is_authenticated %}
+            <el-aside width="200px" style="background-color: white; border-right:1px solid #e7e7e7;">
+
+            <div
+              class='tag_proyecto' v-if="parseInt('{{codigo}}') > 0 || parseInt('{{codigo_definicion}}') > 0 || parseInt('{{codigo_ejecucion}}') > 0">
+              <div style="font-size: 10px;
+  
+              color: #000;
+              clear: both;">Proyecto:</div>
+              
+                  <div style="float: left;
+                  font-size: 15px;
+                  width: 100%;
+                  color: #409EFF;">
+                    $[[proyectoBase.nombre]] 
+
+                  </div>
+            
+            </div>
+
+            <h4 v-if="parseInt('{{codigo_sprint}}')" style="color:black;padding-right: 50px;font-weight: 500;">Sprint: $[[sprintBase.nombre]] </h4>
+
+                <el-menu :default-openeds="['1', '3']" @select="handleSelect" style="border-right:none;">
+                  <el-submenu index="1">
+                    <template #title><i class="el-icon-message"></i>Navigator One</template>
+                    <el-menu-item-group>
+                      <template  #title > Menu </template>
+                      <el-menu-item index="LISTAR-ROL-SISTEMA" v-if="permisosUsuarioSistema.indexOf(permisoVista1) != -1" style="font-weight: 500;">Roles de Sistema</el-menu-item>
+                      <el-menu-item index="LISTAR-USUARIOS" v-if="permisosUsuarioSistema.indexOf(permisoVista2) != -1" style="font-weight: 500;"> Perfiles de usuario </el-menu-item>
+   
+                      <el-menu-item index="LISTAR-PROYECTOS" v-if="permisosUsuarioSistema.indexOf(permisoVista3) != -1" style="font-weight: 500;"> Proyectos-Administracion </el-menu-item>
+                      <el-menu-item index="DEFINICION-PROYECTO" v-if="permisosUsuarioSistema.indexOf(permisoVista4) != -1" style="font-weight: 500;"> Definiciones de Proyecto </el-menu-item>
+                      <el-menu-item index="EJECUCION-PROYECTO" v-if="permisosUsuarioSistema.indexOf(permisoVista5) != -1" style="font-weight: 500;"> Ejecuciones de Proyecto </el-menu-item>
+                    </el-menu-item-group>
+
+                  </el-submenu>
+                </el-menu>
+            </el-aside>
+            {% endif %}
+
+            <el-container style="padding:30px 50px; display:block;font-weight: 500;">
+                <!-- {% if user.is_authenticated %}
+                    <h>Usuario: {{ user.username }} !</h>
+                {% endif %} -->
+<!-- 
+                <el-breadcrumb separator-class="el-icon-arrow-right">
+                  <el-breadcrumb-item v-if="parseInt('{{codigo}}') > 0 || parseInt('{{codigo_definicion}}') > 0 || parseInt('{{codigo_ejecucion}}') > 0" :to="{ path: '/' }"> <b>Proyecto: </b>$[[proyectoBase.nombre]] </el-breadcrumb-item>
+                  <el-breadcrumb-item v-if="parseInt('{{codigo_sprint}}')" :to="{ path: '/' }"> Sprint: $[[sprintBase.nombre]] </el-breadcrumb-item>
+                </el-breadcrumb>
+                
+                <br> -->
+                                
+                {% block contenido %}
+                {% endblock %}
+            </el-container>
+        </el-container>
+
+            
+      </div>
+
+        <script>
+            const App = {
+                delimiters: ['$[[', ']]'],
+                data() {
+                    return {
+                        activeIndex: '1',
+                        activeIndex2: '1',
+                        permisosUsuarioSistema: [],
+                        permisoVista1: 'Listar Rol Sistema',
+                        permisoVista2: 'Listar Usuario',
+                        permisoVista3: 'Listar Proyecto',
+                        permisoVista4: 'Ver Definicion de Proyecto',
+                        permisoVista5: 'Ver Ejecucion de Proyecto',
+                        proyectoBase:{},
+                        sprintBase:{},
+                        menu: "",
+                        menu_definicion:""
+                    };
+                  },
+
+                  created(){
+
+                    this.menuNavegacion()
+
+                    {% if user.is_authenticated %}
+                      var self= this;
+                      PermisosServicio.PermisosDelUsuarioPorSistema({{ user.id }}).then( function(resultado) {
+                      self.permisosUsuarioSistema=resultado;
+                      });
+                      
+                    {% endif %}
+                    
+
+                  },
+                
+                methods: {
+                  handleSelect(key, keyPath) {
+                      if ( key == 1 )
+                          window.location.href = "/administracion" 
+                      if ( key == 5 )
+                          window.location.href = "/logout"
+                      if ( key == 6 )
+                          window.location.href = "/loginprueba"
+
+                      if ( key == 'LISTAR-ROL-SISTEMA' )
+                          window.location.href = "/rol_sistema/listar"
+
+                      if ( key == "LISTAR-USUARIOS" )
+                          window.location.href = "/usuario/listar"    
+
+                      if ( key == "LISTAR-PROYECTOS" )
+                          window.location.href = "/proyecto/listar"
+
+                      if ( key == "DEFINICION-PROYECTO" )
+                          window.location.href = "/definicion_proyecto/"    
+                      
+                      if ( key == "EJECUCION-PROYECTO" )
+                          window.location.href = "/ejecucion_proyecto/"
+
+                      if ( key == "Menu del Proyecto" )
+                          window.location.href = this.menu
+                      
+                      if ( key == "Definicion del Proyecto" )
+                          window.location.href = this.menu_definicion
+                
+                    },
+
+                    menuNavegacion(){
+                      var codigo1 = parseInt('{{codigo}}')
+                      var codigo2 = parseInt('{{codigo_ejecucion}}')
+                      var codigo3 = parseInt('{{codigo_definicion}}')
+                      var codigo_sprint = parseInt('{{codigo_sprint}}')
+
+                      if(codigo_sprint){
+                        SprintServicio.Obtener(codigo_sprint).then((resultado)=>{
+                          this.sprintBase=resultado
+                        })
+                      }
+                        
+                      
+                      if(codigo1){
+                          ProyectoServicio.Obtener(codigo1).then((resultado)=>{
+                          this.proyectoBase=resultado
+                          this.menu = '/ejecucion_proyecto/' + codigo1 +'/'
+                          this.menu_definicion = '/definicion_proyecto/' + codigo1 +'/'
+                          console.log(resultado)
+                        })
+                      
+                      }else if(codigo2){
+                           ProyectoServicio.Obtener(codigo2).then((resultado)=>{
+                          this.proyectoBase=resultado
+                          this.menu = '/ejecucion_proyecto/' + codigo2 +'/'
+                          this.menu_definicion = '/definicion_proyecto/' + codigo2 +'/'
+                          console.log(resultado)
+                        })
+                       }else if(codigo3){
+                           ProyectoServicio.Obtener(codigo3).then((resultado)=>{
+                          this.proyectoBase=resultado
+                          this.menu = '/ejecucion_proyecto/' + codigo3 +'/'
+                          this.menu_definicion = '/definicion_proyecto/' + codigo3 +'/'
+                          console.log(resultado)
+                        })
+                       }else{
+                          this.menu = '/ejecucion_proyecto/'
+                          this.menu_definicion = '/definicion_proyecto/'
+                       }
+                       
+
+
+                    }
+                  }
+
+
+              
+            };
+
+            
+        
+            const app = Vue.createApp(App);
+            
+
+              var es = {
+                name: 'es',
+                el: {
+                  colorpicker: {
+                    confirm: 'Confirmar',
+                    clear: 'Despejar',
+                  },
+                  datepicker: {
+                    now: 'Ahora',
+                    today: 'Hoy',
+                    cancel: 'Cancelar',
+                    clear: 'Despejar',
+                    confirm: 'Confirmar',
+                    selectDate: 'Seleccionar fecha',
+                    selectTime: 'Seleccionar hora',
+                    startDate: 'Fecha Incial',
+                    startTime: 'Hora Inicial',
+                    endDate: 'Fecha Final',
+                    endTime: 'Hora Final',
+                    prevYear: 'Año Anterior',
+                    nextYear: 'Próximo Año',
+                    prevMonth: 'Mes Anterior',
+                    nextMonth: 'Próximo Mes',
+                    year: '',
+                    month1: 'enero',
+                    month2: 'febrero',
+                    month3: 'marzo',
+                    month4: 'abril',
+                    month5: 'mayo',
+                    month6: 'junio',
+                    month7: 'julio',
+                    month8: 'agosto',
+                    month9: 'septiembre',
+                    month10: 'octubre',
+                    month11: 'noviembre',
+                    month12: 'diciembre',
+                    // week: 'semana',
+                    weeks: {
+                      sun: 'dom',
+                      mon: 'lun',
+                      tue: 'mar',
+                      wed: 'mié',
+                      thu: 'jue',
+                      fri: 'vie',
+                      sat: 'sáb',
+                    },
+                    months: {
+                      jan: 'ene',
+                      feb: 'feb',
+                      mar: 'mar',
+                      apr: 'abr',
+                      may: 'may',
+                      jun: 'jun',
+                      jul: 'jul',
+                      aug: 'ago',
+                      sep: 'sep',
+                      oct: 'oct',
+                      nov: 'nov',
+                      dec: 'dic',
+                    },
+                  },
+                  select: {
+                    loading: 'Cargando',
+                    noMatch: 'No hay datos que coincidan',
+                    noData: 'Sin datos',
+                    placeholder: 'Seleccionar',
+                  },
+                  cascader: {
+                    noMatch: 'No hay datos que coincidan',
+                    loading: 'Cargando',
+                    placeholder: 'Seleccionar',
+                    noData: 'Sin datos',
+                  },
+                  pagination: {
+                    goto: 'Ir a',
+                    pagesize: '/página',
+                    total: 'Total {total}',
+                    pageClassifier: '',
+                  },
+                  messagebox: {
+                    confirm: 'Aceptar',
+                    cancel: 'Cancelar',
+                    error: 'Entrada inválida',
+                  },
+                  upload: {
+                    deleteTip: 'Pulse Eliminar para retirar',
+                    delete: 'Eliminar',
+                    preview: 'Vista Previa',
+                    continue: 'Continuar',
+                  },
+                  table: {
+                    emptyText: 'Sin Datos',
+                    confirmFilter: 'Confirmar',
+                    resetFilter: 'Reiniciar',
+                    clearFilter: 'Despejar',
+                    sumText: 'Suma',
+                  },
+                  tree: {
+                    emptyText: 'Sin Datos',
+                  },
+                  transfer: {
+                    noMatch: 'No hay datos que coincidan',
+                    noData: 'Sin datos',
+                    titles: ['Lista 1', 'Lista 2'],
+                    filterPlaceholder: 'Ingresar palabra clave',
+                    noCheckedFormat: '{total} artículos',
+                    hasCheckedFormat: '{checked}/{total} revisados',
+                  },
+                  image: {
+                    error: 'HA FALLADO',
+                  },
+                  pageHeader: {
+                    title: 'Volver',
+                  },
+                  popconfirm: {
+                    confirmButtonText: 'Si',
+                    cancelButtonText: 'No',
+                  },
+                },
+              }
+             
+
+
+              app.use(ElementPlus, {
+                locale: es
+              })
+            
+            
+          
+
+            {% block script %} {% endblock %}
+
+            app.mount("#app");
+        </script>
+        
+
+    </body>
+</html>
