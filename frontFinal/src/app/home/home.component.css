@@ -1,0 +1,86 @@
+.nav-wrapper {
+    background: #00adaa;
+}
+
+.brand-logo {
+    font-family: 'Montserrat Alternates', sans-serif;
+    color: #fff;
+}
+
+a {
+    cursor: pointer;
+}
+
+.op-mobile{
+    background: #005670;
+    border: 1px solid #4298b5;
+    padding: 4px;
+}
+
+.op-mobile p {
+    color: #fff;
+    margin:0;
+}
+
+.user-view{
+    background-color: #4ead00;
+    border-bottom: 4px solid #070808;
+}
+
+.center{
+    margin-top: 8px;
+}
+
+
+/*
+#desplegable1 i, #desplegable1 a{
+    color: #fff;
+}
+*/
+
+/* propiedades del logo principal de la app*/
+.logo-container{
+    color:black;
+    font-weight:800;
+    font-family: 'Montserrat Alternates', sans-serif;
+}
+.logo-container i{
+    color:#fff;
+}
+
+/* propiedades del icono principal de cada submenu desplegable*/
+.collapsible-header i{
+    color:#fff;
+}
+
+/* propiedades del enlace <a> principal de cada submenu desplegable*/
+.collapsible-header {
+    color:#fff;
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-size: large;
+    font-weight:800;
+}
+
+/* propiedades de los SUB iconos de cada submenu desplegable*/
+.desplegable i{
+    font-size:30px;
+}
+/* propiedades de los SUB enlaces de cada submenu desplegable*/
+.desplegable a{
+    color:white;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 800;
+}
+
+/* propiedades del cuerpo de cada desplegable*/
+.collapsible-body{
+    background-color: #00adaa;
+}
+
+.sidenav {
+    width: 250px !important;
+    background-color: #00adaa;
+    
+}
+
+

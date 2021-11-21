@@ -18,6 +18,7 @@ from rest_framework import status
 from datetime import datetime
 
 from mysite.modelos.detalle.model import Detalle
+from mysite.modelos.cabecera.model import Cabecera
 from mysite.modelos.detalle.serializer import DetalleReadSerializer, DetalleUpdateSerializer
 """**Mixins:** Los mixins se utilizan para reutilizar código en componentes de Vue que realizan la misma acción. Los mixins son como funciones en la programación de C. Podemos definir algunas acciones en mixins y usarlo donde sea necesario. La reutilización del código es simple con la ayuda de mixins."""
 class DetalleViewSet(  
@@ -36,6 +37,30 @@ class DetalleViewSet(
     serializer_class = DetalleReadSerializer   
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
     filterset_fields = fields = ['id','cabecera','producto','cantidad','subtotal']
+
+
+    def get_queryset(self):
+        """
+        Optionally restricts the returned purchases to a given user,
+        by filtering against a `username` query parameter in the URL.
+        """
+        queryset = Detalle.objects.all()
+        startDate = self.request.query_params.get('startdate')
+        endDate = self.request.query_params.get('enddate')
+        #queryFInal =
+        print(startDate,endDate)
+        if startDate is not None and endDate is not None:
+
+            cabeceraQuery = Cabecera.objects.all().filter(fecha__range=(startDate, endDate))
+
+            wanted_items = set()
+
+            for cabecera in cabeceraQuery:
+                wanted_items.add(cabecera.pk)
+
+            queryset =Detalle.objects.all().filter(cabecera__in = wanted_items)
+
+        return queryset
 
     def update(self, request, *args, **kwargs ):
         """**Metodo Update**"""

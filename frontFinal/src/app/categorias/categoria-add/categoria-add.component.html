@@ -1,0 +1,28 @@
+<app-home></app-home>
+<div class="wrapper">
+  <div class="col s12" style="margin-top: 16px;">
+      <h4 class="center-align"><i id="iconAdd" class="material-icons">person_add</i> Agregar Cliente</h4>
+  </div>
+  <div class="input-field col s12 m8 offset-m2">
+    <i class="material-icons prefix">account_box</i>
+    <input [(ngModel)]="cliente.nombre" name='nombre' id="nombre" type="text" class="">
+    <label for="nombre" class="active">Nombre del Cliente</label>
+  </div>
+  <div class="input-field col s12 m8 offset-m2">
+    <i class="material-icons prefix">fingerprint</i>
+    <input [(ngModel)]="cliente.ruc" name='ruc' id="ruc" type="text" class="">
+    <label for="ruc" class="active">RUC</label>
+  </div>
+  <div class="input-field col s12 m8 offset-m2">
+    <i class="material-icons prefix">email</i>
+    <input [(ngModel)]="cliente.email" name='email' id="email" type="email" class="">
+    <label for="email" class="active">Email</label>
+  </div>
+  
+  <div class="col s12 m2 offset-m8">
+      <a (click)='post()' class="waves-effect waves-light btn right">Guardar</a>
+
+      <a [routerLink]="['/clientes/']" class="waves-effect waves-light btn left-align agree">Atras</a>
+  </div>
+
+</div>
